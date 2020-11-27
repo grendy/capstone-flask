@@ -132,14 +132,14 @@ def index():
     result3 = str(figdata_png)[2:-1]
 
     ## Buatlah sebuah plot yang menampilkan insight di dalam data 
-    topGen = df2.groupby(['Genres']).agg({'Installs':'sum'}).reset_index().sort_values('Installs',ascending=False).head()
-    fig = plt.figure(figsize=(5,5))
+    topGen = df2.groupby(['Genres']).agg({'Installs':'sum'}).reset_index().sort_values('Installs',ascending=False).head(10)
+    fig = plt.figure(figsize=(16,8), dpi=800)
     X = topGen.Genres
     Y = topGen.Installs
     fig.add_subplot()
     plt.xlabel('Genres')
     plt.ylabel('Total Installs')
-    plt.bar(X,Y, color=my_colors)
+    plt.barh(X,Y, color=my_colors)
     plt.savefig('bar_com.png',bbox_inches="tight")
 
     figfile = BytesIO()
