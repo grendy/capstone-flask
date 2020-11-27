@@ -133,12 +133,13 @@ def index():
 
     ## Buatlah sebuah plot yang menampilkan insight di dalam data 
     topGen = df2.groupby(['Genres']).agg({'Installs':'sum'}).reset_index().sort_values('Installs',ascending=False).head(10)
-    fig = plt.figure(figsize=(16,8), dpi=800)
+    topGen['Genres'] = topGen['Genres'].str.upper()
+    fig = plt.figure(figsize=(20,8), dpi=800)
     X = topGen.Genres
     Y = topGen.Installs
     fig.add_subplot()
-    plt.xlabel('Genres')
-    plt.ylabel('Total Installs')
+    plt.xlabel('TOTAL INSTALLS')
+    plt.ylabel('GENRES')
     plt.barh(X,Y, color=my_colors)
     plt.savefig('bar_com.png',bbox_inches="tight")
 
